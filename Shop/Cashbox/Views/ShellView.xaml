@@ -1,0 +1,37 @@
+﻿<Window x:Class="Shop.Views.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Shop"
+        xmlns:views="clr-namespace:Shop.Views"
+        xmlns:prism="http://prismlibrary.com/"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        mc:Ignorable="d"
+        Title="Магазин" Height="350" Width="525">
+    <Grid x:Name="LayoutRoot">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <!--prism:RegionManager.RegionName="NavigationRegion"-->
+        <ContentControl Grid.Column="0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+            <views:NavigationPanelView />
+        </ContentControl>
+        <GridSplitter Grid.Column="1"
+					  VerticalAlignment="Stretch"
+					  HorizontalAlignment="Center"
+					  ShowsPreview="True"
+					  Width="5">
+        </GridSplitter>
+        <ContentControl prism:RegionManager.RegionName="ContentRegion"
+						Grid.Column="2"
+						HorizontalAlignment="Stretch"
+						VerticalAlignment="Stretch"
+						Background="Blue">
+        </ContentControl>
+    </Grid>
+</Window>
