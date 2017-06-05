@@ -23,12 +23,14 @@ namespace Module.Cashbox
 
             OnShowNewOrderCommand = new NavigationCommand("Новый заказ", OnShowNewOrder);
             OnShowOrdersCommand = new NavigationCommand("Заказы", OnShowOrders);
+            OnShowProductsCommand = new NavigationCommand("Товары", OnShowProducts);
         }
 
         public void Initialize()
         {
             NavigationService.NavigationMenu.Add(OnShowNewOrderCommand);
             NavigationService.NavigationMenu.Add(OnShowOrdersCommand);
+            NavigationService.NavigationMenu.Add(OnShowProductsCommand);
         }
 
         private NavigationCommand OnShowNewOrderCommand;
@@ -40,6 +42,12 @@ namespace Module.Cashbox
         private void OnShowOrders()
         {
             RegionManager.RequestNavigate("ContentRegion", new Uri("OrdersView", UriKind.Relative));
+        }
+
+        private NavigationCommand OnShowProductsCommand;
+        private void OnShowProducts()
+        {
+            RegionManager.RequestNavigate("ContentRegion", new Uri("ProductsView", UriKind.Relative));
         }
     }
 }

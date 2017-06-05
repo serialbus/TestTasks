@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="Module.Cashbox.Views.ProductsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:views="clr-namespace:Module.Cashbox.Views"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:prism="http://prismlibrary.com/"             
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="0" 
+                  ItemsSource="{Binding Products}"
+                  SelectedItem="{Binding SelectedProduct}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto" />
+                <DataGridTextColumn Header="Наименование" Binding="{Binding Name}" Width="Auto" />
+                <DataGridTextColumn Header="Цена, руб" Binding="{Binding Price}" Width="Auto" />
+                <DataGridTextColumn Header="Кол-во, шт" Binding="{Binding Qauntity}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <ContentControl Grid.Row="1">
+            <views:ProductView DataContext="{Binding SelectedProduct}" />
+        </ContentControl>
+    </Grid>
+</UserControl>

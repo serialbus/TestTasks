@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="Module.Cashbox.Views.ProductView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"             
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="ID:" />
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Id}" />
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Наименование товара:" />
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Name, UpdateSourceTrigger=LostFocus}" />
+
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Цена, руб:" />
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Price, UpdateSourceTrigger=LostFocus}" />
+
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Количество на складе" />
+        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Qauntity, UpdateSourceTrigger=LostFocus}" />
+              
+    </Grid>
+</UserControl>

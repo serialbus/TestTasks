@@ -13,7 +13,11 @@ namespace Infrastructure.Common.Models
     {
         #region Constructor
 
-        public Order() { IsClosed = false; }
+        public Order()
+        {
+            OrderPositions = new List<OrderPosition>();
+            IsClosed = false;
+        }
 
         #endregion
 
@@ -27,9 +31,13 @@ namespace Infrastructure.Common.Models
         /// </summary>
         public bool IsClosed { get; set; }
         /// <summary>
-        /// Дата и время закрытия 
+        /// Дата и время открытия (создания) чека
         /// </summary>
-        public DateTime ClosingDate { get; set; }
+        public DateTime StartTransaction { get; set; }
+        /// <summary>
+        /// Дата и время закрытия чека
+        /// </summary>
+        public DateTime EndTransaction { get; set; }
         /// <summary>
         /// Наличные принятые от покупателя
         /// </summary>
@@ -41,7 +49,7 @@ namespace Infrastructure.Common.Models
         /// <summary>
         /// Позиции заказа
         /// </summary>
-        public List<OrderPosition> OrderPosition { get; set; }
+        public ICollection<OrderPosition> OrderPositions { get; set; }
 
         #endregion
     }

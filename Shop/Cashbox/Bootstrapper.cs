@@ -13,6 +13,9 @@ using Microsoft.Practices.ServiceLocation;
 using Module.Cashbox;
 using Prism.Mvvm;
 using System.Globalization;
+using Infrastructure.DAL;
+using Infrastructure.Common.Services;
+using Infrastructure.Common;
 
 namespace Shop
 {
@@ -33,6 +36,8 @@ namespace Shop
         {
             base.ConfigureAggregateCatalog();
             AggregateCatalog.Catalogs.Add(new AssemblyCatalog(this.GetType().Assembly));
+            AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(CommonModule).Assembly));
+            AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(ShopContext).Assembly));
             //Module A is referenced in in the project and directly in code.
             AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(CashboxModule).Assembly));
         }

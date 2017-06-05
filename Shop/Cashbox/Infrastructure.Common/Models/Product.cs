@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,5 +24,9 @@ namespace Infrastructure.Common.Models
         /// Цена за штуку. руб
         /// </summary>
         public decimal Price { get; set; }
+        /// <summary>
+        /// Количество товара на складе
+        /// </summary>
+        public int Qauntity { get; set; }
     }
 }
