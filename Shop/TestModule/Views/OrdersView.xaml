@@ -16,7 +16,7 @@
                   IsReadOnly="True">
         </DataGrid>
         <DataGrid Grid.Row="1"
-                  ItemsSource="{Binding SelectedOrder.OrderPositions}"
+                  ItemsSource="{Binding OrderPositions}"
                   SelectionMode="Single"
                   IsReadOnly="True">
         </DataGrid>

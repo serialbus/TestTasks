@@ -21,7 +21,6 @@ namespace Module.Cashbox.ViewModels
 
         public OrdersViewModel()
         {
-            Products = new ObservableCollection<Product>(DataBaseService.Repository.Products);
             Orders = new ObservableCollection<Order>(DataBaseService.Repository.Orders);
         }
 
@@ -31,7 +30,10 @@ namespace Module.Cashbox.ViewModels
 
         //public bool KeepAlive => true;
         public ObservableCollection<Order> Orders { get; private set; }
-        public ObservableCollection<Product> Products { get; private set; }
+        public IEnumerable<OrderPosition> OrderPositions
+        {
+            get { return SelectedOrder == null ? Enumerable.Empty<OrderPosition>() : SelectedOrder.OrderPositions; }
+        }
 
         private Order _SelectedOrder;
         public Order SelectedOrder
@@ -41,6 +43,7 @@ namespace Module.Cashbox.ViewModels
             {
                 _SelectedOrder = value;
                 RaisePropertyChanged("SelectedOrder");
+                RaisePropertyChanged("OrderPositions");
             }
         }
 

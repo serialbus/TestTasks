@@ -31,7 +31,7 @@ namespace Infrastructure.DAL
 
 
         IEnumerable<Product> IRepository.Products => Products;
-        IEnumerable<Order> IRepository.Orders => Orders;
+        IEnumerable<Order> IRepository.Orders => Orders.Include(p => p.OrderPositions);
 
         #endregion
 
