@@ -51,6 +51,15 @@
   <ItemGroup>
     <Compile Include="DatabaseInitializer.cs" />
     <Compile Include="DbContextConfiguration.cs" />
+    <Compile Include="Migrations\201706050802335_InitialCreate.cs" />
+    <Compile Include="Migrations\201706050802335_InitialCreate.Designer.cs">
+      <DependentUpon>201706050802335_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706061027307_DatetimeFieldsModification.cs" />
+    <Compile Include="Migrations\201706061027307_DatetimeFieldsModification.Designer.cs">
+      <DependentUpon>201706061027307_DatetimeFieldsModification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ShopContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -65,6 +74,14 @@
       <Project>{b9c2907c-8a76-4cf1-beb5-92123d5742c2}</Project>
       <Name>Infrastructure.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201706050802335_InitialCreate.resx">
+      <DependentUpon>201706050802335_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706061027307_DatetimeFieldsModification.resx">
+      <DependentUpon>201706061027307_DatetimeFieldsModification.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

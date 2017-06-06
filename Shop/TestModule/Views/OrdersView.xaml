@@ -4,6 +4,21 @@
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True">
     <Grid>
-        <TextBlock Text="Заказы !!!" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <DataGrid Grid.Row="0" 
+                  ItemsSource="{Binding Orders}"
+                  SelectedItem="{Binding SelectedOrder}"
+                  SelectionMode="Single"
+                  IsReadOnly="True">
+        </DataGrid>
+        <DataGrid Grid.Row="1"
+                  ItemsSource="{Binding SelectedOrder.OrderPositions}"
+                  SelectionMode="Single"
+                  IsReadOnly="True">
+        </DataGrid>
     </Grid>
 </UserControl>

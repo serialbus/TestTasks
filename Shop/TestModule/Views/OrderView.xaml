@@ -2,13 +2,102 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:local="clr-namespace:Module.Cashbox.Views"
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <TextBlock Text="Order View!!!" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Button Content="Новый чек" Command="{Binding AddOrderCommand}" />
+            <Button Content="Закрыть чек" Command="{Binding  CloseOrderCommand}" />
+        </StackPanel>
+
+        <DataGrid Grid.Row="1"
+                  ItemsSource="{Binding OrderPositions}"
+                  SelectedItem="{Binding SelectedOrderPosition}"
+                  SelectionMode="Single"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Наименование" Binding="{Binding ProductName}" Width="Auto" />
+                <DataGridTextColumn Header="Количество" Binding="{Binding Quantity}" Width="Auto" />
+                <DataGridTextColumn Header="Сумма" Binding="{Binding TotalSum}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!--selected order position details-->
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Код:" />
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding SelectedOrderPosition.ProductId}" />
+            <TextBlock Grid.Row="0" Grid.Column="2" Text="Цена:" />
+            <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding SelectedOrderPosition.Price}" />
+            <TextBlock Grid.Row="0" Grid.Column="4" Text="Кол-во:" />
+            <TextBlock Grid.Row="0" Grid.Column="5" Text="{Binding SelectedOrderPosition.Quantity}" />
+            <TextBlock Grid.Row="0" Grid.Column="6" Text="Сумма:" />
+            <TextBlock Grid.Row="0" Grid.Column="7" Text="{Binding SelectedOrderPosition.TotalSum}" />
+            
+            <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="8" Text="{Binding SelectedOrderPosition.ProductName}" FontSize="20" />
+        </Grid>
+
+        <!--Input code product-->
+        <TextBox Grid.Row="3" 
+                 Name="TextBoxPorductCode" 
+                 IsEnabled="{Binding IsEnabledAddOrderPosion}">
+            <TextBox.InputBindings>
+                <KeyBinding Command="{Binding AddOrderPosionCommand}" Key="Return" CommandParameter="{Binding Text, ElementName=TextBoxPorductCode}" />
+            </TextBox.InputBindings>
+        </TextBox>
+        
+        <!--selected order details-->
+        <Grid Grid.Row="4">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Вид документа: Продажа " />
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding OrderStatus}" />
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Номер документа:" />
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding SelectedOrder.Id}" />
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Позиций:" />
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding PositionsQuantity}" />
+
+            <TextBlock Grid.Row="0" Grid.Column="2" Text="Сумма документа:" />
+            <TextBlock Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Text="{Binding TotalSum}" FontSize="30" />
+        </Grid>
     </Grid>
 </UserControl>

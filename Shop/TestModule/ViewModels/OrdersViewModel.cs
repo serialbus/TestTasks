@@ -33,6 +33,17 @@ namespace Module.Cashbox.ViewModels
         public ObservableCollection<Order> Orders { get; private set; }
         public ObservableCollection<Product> Products { get; private set; }
 
+        private Order _SelectedOrder;
+        public Order SelectedOrder
+        {
+            get { return _SelectedOrder; }
+            set
+            {
+                _SelectedOrder = value;
+                RaisePropertyChanged("SelectedOrder");
+            }
+        }
+
         #endregion
     }
 }

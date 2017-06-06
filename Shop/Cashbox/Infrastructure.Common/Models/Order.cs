@@ -15,6 +15,7 @@ namespace Infrastructure.Common.Models
 
         public Order()
         {
+            StartTransaction = DateTime.Now;
             OrderPositions = new List<OrderPosition>();
             IsClosed = false;
         }
@@ -33,11 +34,11 @@ namespace Infrastructure.Common.Models
         /// <summary>
         /// Дата и время открытия (создания) чека
         /// </summary>
-        public DateTime StartTransaction { get; set; }
+        public DateTime? StartTransaction { get; set; }
         /// <summary>
         /// Дата и время закрытия чека
         /// </summary>
-        public DateTime EndTransaction { get; set; }
+        public DateTime? EndTransaction { get; set; }
         /// <summary>
         /// Наличные принятые от покупателя
         /// </summary>

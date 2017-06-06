@@ -21,7 +21,7 @@ namespace Module.Cashbox
         {
             RegionManager = regionManager;
 
-            OnShowNewOrderCommand = new NavigationCommand("Новый заказ", OnShowNewOrder);
+            OnShowNewOrderCommand = new NavigationCommand("Касса", OnShowNewOrder);
             OnShowOrdersCommand = new NavigationCommand("Заказы", OnShowOrders);
             OnShowProductsCommand = new NavigationCommand("Товары", OnShowProducts);
         }
