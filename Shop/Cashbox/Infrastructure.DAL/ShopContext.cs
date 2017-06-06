@@ -50,6 +50,12 @@ namespace Infrastructure.DAL
             SaveChanges();
             return product;
         }
+        public void DeleteProduct(Product product)
+        {
+            Products.Remove(product);
+            SaveChanges();
+        }
+
         void IRepository.SaveChanges()
         {
             SaveChanges();

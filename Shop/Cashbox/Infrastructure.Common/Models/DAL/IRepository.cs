@@ -14,6 +14,7 @@ namespace Infrastructure.Common.Models.DAL
 
         Order CreateOrder();
         Product CreateProduct();
+        void DeleteProduct(Product product);
 
         void SaveChanges();
     }

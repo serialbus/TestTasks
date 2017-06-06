@@ -18,6 +18,8 @@ namespace Module.Cashbox.ViewModels
 
         public ProductsViewModel()
         {
+            AddProductCommand = new DelegateCommand(OnAddProduct);
+            DeleteProductCommand = new DelegateCommand(OnDeleteProduct, CanDeleteProduct);
             Products = new ObservableCollection<ProductViewModel>(DataBaseService.Repository.Products.Select(x => new ProductViewModel(x)));
             SelectedProduct = Products.FirstOrDefault();
         }
@@ -44,6 +46,27 @@ namespace Module.Cashbox.ViewModels
         #endregion
 
         #region Commands
+
+        public DelegateCommand AddProductCommand { get; private set; }
+        private void OnAddProduct()
+        {
+            var product = new ProductViewModel(DataBaseService.Repository.CreateProduct());
+            Products.Add(product);
+            SelectedProduct = product;
+        }
+
+        public DelegateCommand DeleteProductCommand { get; private set; }
+        private void OnDeleteProduct()
+        {
+            DataBaseService.Repository.DeleteProduct(SelectedProduct.Product);
+            Products.Remove(SelectedProduct);
+            SelectedProduct = Products.FirstOrDefault();
+        }
+        private bool CanDeleteProduct()
+        {
+            return SelectedProduct != null;
+        }
+
         #endregion
     }
 }

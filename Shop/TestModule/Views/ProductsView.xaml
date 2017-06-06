@@ -9,6 +9,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <DataGrid Grid.Row="0" 
                   ItemsSource="{Binding Products}"
@@ -26,5 +27,9 @@
         <ContentControl Grid.Row="1">
             <views:ProductView DataContext="{Binding SelectedProduct}" />
         </ContentControl>
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Button Content="Удалить" Command="{Binding DeleteProductCommand}" />
+            <Button Content="Создать" Command="{Binding AddProductCommand}" />
+        </StackPanel>
     </Grid>
 </UserControl>
