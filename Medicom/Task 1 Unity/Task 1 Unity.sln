@@ -3,19 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task 1", "Task 1\Task 1.csproj", "{99C9E82C-C594-446D-AA59-8FFBC43AD226}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task 1 Unity", "Task 1 Unity\Task 1 Unity.csproj", "{99C9E82C-C594-446D-AA59-8FFBC43AD226}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{FACCCF57-C7DF-4881-9DB4-1A8A22415254}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{B8E29872-8E77-42B1-BF5A-8DE2C2DB7E51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Common", "Infrastructure.Common\Infrastructure.Common.csproj", "{4F20950F-5500-46CE-AD8C-10037203A638}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{9A560D0B-C7EE-41C3-8EDD-667334245B07}"
 	ProjectSection(SolutionItems) = preProject
 		Description.txt = Description.txt
 		..\Documents\Тестовое задание. WPF разработчик.pdf = ..\Documents\Тестовое задание. WPF разработчик.pdf
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{F347CB74-291E-4A4C-9860-F571B5BBEC9A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Moduls", "Moduls", "{101F3030-ABB0-4AB4-A80C-66E5F67058F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Common", "Infrastructure.Common\Infrastructure.Common.csproj", "{AB8B448C-DD74-4D60-A041-3E5D03A32180}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.DAL", "Infrastructure.DAL\Infrastructure.DAL.csproj", "{61FCEC32-70D6-4DF2-BD91-9A3E233DC65D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{AB8B448C-DD74-4D60-A041-3E5D03A32180}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,20 +29,20 @@ Global
 		{99C9E82C-C594-446D-AA59-8FFBC43AD226}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99C9E82C-C594-446D-AA59-8FFBC43AD226}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99C9E82C-C594-446D-AA59-8FFBC43AD226}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F20950F-5500-46CE-AD8C-10037203A638}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F20950F-5500-46CE-AD8C-10037203A638}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F20950F-5500-46CE-AD8C-10037203A638}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F20950F-5500-46CE-AD8C-10037203A638}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AB8B448C-DD74-4D60-A041-3E5D03A32180}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AB8B448C-DD74-4D60-A041-3E5D03A32180}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB8B448C-DD74-4D60-A041-3E5D03A32180}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB8B448C-DD74-4D60-A041-3E5D03A32180}.Release|Any CPU.Build.0 = Release|Any CPU
-		{61FCEC32-70D6-4DF2-BD91-9A3E233DC65D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{61FCEC32-70D6-4DF2-BD91-9A3E233DC65D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{61FCEC32-70D6-4DF2-BD91-9A3E233DC65D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{61FCEC32-70D6-4DF2-BD91-9A3E233DC65D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{AB8B448C-DD74-4D60-A041-3E5D03A32180} = {F347CB74-291E-4A4C-9860-F571B5BBEC9A}
-		{61FCEC32-70D6-4DF2-BD91-9A3E233DC65D} = {F347CB74-291E-4A4C-9860-F571B5BBEC9A}
+		{4F20950F-5500-46CE-AD8C-10037203A638} = {B8E29872-8E77-42B1-BF5A-8DE2C2DB7E51}
+		{AB8B448C-DD74-4D60-A041-3E5D03A32180} = {101F3030-ABB0-4AB4-A80C-66E5F67058F5}
 	EndGlobalSection
 EndGlobal

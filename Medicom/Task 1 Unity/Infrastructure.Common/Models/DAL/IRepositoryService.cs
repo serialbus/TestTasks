@@ -8,14 +8,14 @@ namespace Infrastructure.Common.Models.DAL
 {
     public interface IRepositoryService
     {
-        IList<Note> Notes { get; }
-        IList<WebAccount> WebAccounts { get; }
-        IList<CreditCard> CreditCards { get; }
+        IList<ModelBase> Items { get; }
 
+        bool IsConnect { get; }
         /// <summary>
         /// Получает данные из источника
         /// </summary>
-        void Pull();
+        void Open();
+        void Close();
         /// <summary>
         /// Сохраняет данные в источник 
         /// </summary>

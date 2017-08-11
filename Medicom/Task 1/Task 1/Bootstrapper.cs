@@ -6,6 +6,9 @@ using Prism.Mef;
 using Prism.Mvvm;
 using Task.Views;
 using System.ComponentModel.Composition.Hosting;
+using Infrastructure.Common;
+using Infrastructure.DAL;
+using Infrastructure.Common.Services.Configuration;
 
 namespace Task
 {
@@ -13,7 +16,7 @@ namespace Task
     {
         protected override DependencyObject CreateShell()
         {
-            return Container.GetExportedValue<ShellView>("ShellView");
+            return Container.GetExportedValue<ShellView>();
         }
 
         protected override void InitializeShell()
@@ -27,7 +30,15 @@ namespace Task
         {
             base.ConfigureAggregateCatalog();
             AggregateCatalog.Catalogs.Add(new AssemblyCatalog(this.GetType().Assembly));
+            AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(CommonModule).Assembly));
+            AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(DALModule).Assembly));
         }
+
+        protected override void ConfigureContainer()
+        {
+            base.ConfigureContainer();
+        }
+
 
         protected override void ConfigureViewModelLocator()
         {

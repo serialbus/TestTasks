@@ -12,11 +12,9 @@ namespace Infrastructure.Common
     [ModuleExport(typeof(CommonModule))]
     public class CommonModule : IModule
     {
-        public IRepository Repository { get; set; }
-
         public void Initialize()
         {
-            throw new NotImplementedException();
+
         }
     }
 }

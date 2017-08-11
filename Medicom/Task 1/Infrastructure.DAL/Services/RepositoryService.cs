@@ -1,6 +1,9 @@
-﻿using Infrastructure.Common.Models.Configuration;
+﻿using Infrastructure.Common.Models;
+using Infrastructure.Common.Models.DAL;
+using Infrastructure.Common.Services.Configuration;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -8,13 +11,34 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace Infrastructure.Common.Models.DAL
+namespace Infrastructure.DAL
 {
-    public class Repository : IRepository
+    /// <summary>
+    /// Сервис для работы с БД (файлом)
+    /// </summary>
+    [Export(typeof(IRepositoryService))]
+    [PartCreationPolicy(CreationPolicy.Shared)]
+    public class RepositoryService : IRepositoryService
     {
+        #region Constructors
+
+        [ImportingConstructor]
+        public RepositoryService()
+        { }
+
+        [ImportingConstructor]
+        public RepositoryService(IConfigurationService configurationService)
+        {
+            _ConfigurationService = configurationService;
+        }
+
+        #endregion
+
         #region Fields And Properties
 
         private static object SyncRoot = new object();
+        [Import(typeof(IConfigurationService))]
+        private readonly IConfigurationService _ConfigurationService;
 
         private List<Note> _Notes = new List<Note>();
         public IList<Note> Notes => _Notes;
@@ -31,12 +55,12 @@ namespace Infrastructure.Common.Models.DAL
 
         public void Pull()
         {
-            ReadDataBaseFile(ConfigurationManager.PathToRepositoryFile);
+            ReadDataBaseFile(_ConfigurationService.PathToRepositoryFile);
         }
 
         public void SaveChanges()
         {
-            WriteDataBaseFile(ConfigurationManager.PathToRepositoryFile);
+            WriteDataBaseFile(_ConfigurationService.PathToRepositoryFile);
         }
 
         private void ReadDataBaseFile(string pathToFile)

@@ -1,30 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
-using Framework = System.Configuration;
 
-namespace Infrastructure.Common.Models.Configuration
+namespace Infrastructure.Common.Services.Configuration
 {
-    public static class ConfigurationManager
+    [Export(typeof(IConfigurationService))]
+    public class ConfigurationService : IConfigurationService
     {
+        #region Constructors
+        
+        [ImportingConstructor]
+        public ConfigurationService()
+        { }
+        
+        #endregion
+
         #region Fields And Properties
 
-        public static string PathToRepositoryFile
+        public string PathToRepositoryFile
         {
             get
             {
-                var path = Framework::ConfigurationManager.AppSettings["PathToRepositoryFile"];
+                var path = ConfigurationManager.AppSettings["PathToRepositoryFile"];
                 // Если пусть пустой (по умолчанию), то файл репозитория ищем в директории приложения
                 return String.IsNullOrEmpty(path) ? Environment.CurrentDirectory : path;
             }
             set
             {
-                Framework::ConfigurationManager.AppSettings["PathToRepositoryFile"] = value;
+                ConfigurationManager.AppSettings["PathToRepositoryFile"] = value;
             }
         }
         
