@@ -11,11 +11,12 @@ namespace DAL
     //[ModuleDependency()]
     public class DALModule : ModuleBase
     {
-        IRegionManager _regionManager;
+        private readonly IRegionManager RegionManager;
 
-        public DALModule(IUnityContainer unityContainer, IRegionManager regionManager): 
-            base(unityContainer, regionManager)
+        public DALModule(IUnityContainer unityContainer): 
+            base(unityContainer)
         {
+            RegionManager = unityContainer.Resolve<IRegionManager>();
         }
 
         public override void Initialize()

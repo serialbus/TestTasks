@@ -13,17 +13,15 @@ namespace Infrastructure.Common.Modularity
     {
         #region Costructor
 
-        public ModuleBase(IUnityContainer container, IRegionManager regionManager)
+        public ModuleBase(IUnityContainer container)
         {
             Container = container;
-            RegionManager = regionManager;
         }
 
         #endregion
 
         #region Fields And Properties
 
-        protected readonly IRegionManager RegionManager;
         protected readonly IUnityContainer Container;
 
         #endregion

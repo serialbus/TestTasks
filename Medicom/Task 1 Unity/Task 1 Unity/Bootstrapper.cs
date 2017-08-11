@@ -32,7 +32,7 @@ namespace Medicom
             {
                 ModuleName = moduleType.Name,
                 ModuleType = moduleType.AssemblyQualifiedName,
-                InitializationMode = InitializationMode.OnDemand
+                InitializationMode = InitializationMode.WhenAvailable
             });
         }
 

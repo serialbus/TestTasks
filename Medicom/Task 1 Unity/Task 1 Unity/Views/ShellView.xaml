@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
+        xmlns:views="clr-namespace:Medicom.Views"
         Title="{Binding Title}" Height="350" Width="525">
     <Grid>
         <Menu VerticalAlignment="Top">
@@ -12,6 +13,9 @@
                 <MenuItem Header="Выйти" Command="{Binding ExitCommand}" />
             </MenuItem>
         </Menu>
-        <ContentControl prism:RegionManager.RegionName="ContentRegion" />
+        <!--<ContentControl prism:RegionManager.RegionName="ContentRegion" />-->
+        <ContentControl>
+            <views:ItemsView />
+        </ContentControl>
     </Grid>
 </Window>
