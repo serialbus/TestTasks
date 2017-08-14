@@ -18,6 +18,7 @@ namespace Medicom.ViewModels.Services
             AddNoteCommand = new CompositeCommand();
             AddWebAccountCommand = new CompositeCommand();
             AddCreditCardCommand = new CompositeCommand();
+            DeleteItemCommand = new CompositeCommand();
         }
 
         #endregion
@@ -27,6 +28,7 @@ namespace Medicom.ViewModels.Services
         public CompositeCommand AddNoteCommand { get; private set; }
         public CompositeCommand AddWebAccountCommand { get; private set; }
         public CompositeCommand AddCreditCardCommand { get; private set; }
+        public CompositeCommand DeleteItemCommand { get; private set; }
 
         #endregion
     }

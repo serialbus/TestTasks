@@ -11,13 +11,11 @@
                 <MenuItem Header="Выйти" Command="{Binding ExitCommand}" />
             </MenuItem>
             <MenuItem Header="Редактировать">
-                <MenuItem Header="Добавить Замечание" IsEnabled="{Binding IsEnableAddNote}" Command="{Binding AddNoteCommand}" />
-                <MenuItem Header="Добавить Кредитную карту" IsEnabled="{Binding IsEnabledAddCreditCard}" Command="{Binding AddCreditCardCommand}" />
-                <MenuItem Header="Добавить Web-аккаунт" IsEnabled="{Binding IsEnabledAddWebAccount}" Command="{Binding AddWebAccountCommand}" />
+                <MenuItem Header="Добавить Замечание" Command="{Binding AddNoteCommand}" />
+                <MenuItem Header="Добавить Кредитную карту" Command="{Binding AddCreditCardCommand}" />
+                <MenuItem Header="Добавить Web-аккаунт" Command="{Binding AddWebAccountCommand}" />
                 <Separator />
-                <MenuItem Header="Удалить Замечание" />
-                <MenuItem Header="Удалить Кредитную карту" />
-                <MenuItem Header="Удалить Web-аккаунт" />
+                <MenuItem Header="Удалить" Command="{Binding DeleteItemCommand}" />
             </MenuItem>
         </Menu>
     </Grid>

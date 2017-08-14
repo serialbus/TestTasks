@@ -22,6 +22,21 @@ namespace Medicom.ViewModels
 
         public ModelBase Item { get; private set; }
 
+        public string ItemTypeName
+        {
+            get
+            {
+                if (IsNote)
+                    return "Заметка";
+                else if (IsCreditCard)
+                    return "Кредитная карта";
+                else if (IsWebAccount)
+                    return "Web учётная запись";
+                else
+                    return string.Empty;
+            }
+        }
+
         public bool IsNote
         {
             get { return Item is Note; }
@@ -56,7 +71,7 @@ namespace Medicom.ViewModels
                 {
                     var item = Item as Note;
                     item.Content = value;
-                    RaisePropertyChanged("Note");
+                    RaisePropertyChanged("Content");
                 }
             }
         }

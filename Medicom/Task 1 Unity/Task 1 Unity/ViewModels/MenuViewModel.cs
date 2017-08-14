@@ -24,13 +24,7 @@ namespace Medicom.ViewModels
             _SaveFileCommand = new DelegateCommand(OnSaveFile, CanSaveFile);
 
             ApplicationCommandsService = container.Resolve<IApplicationCommandsService>();
-            ApplicationCommandsService.AddNoteCommand.CanExecuteChanged += 
-                (object sender, EventArgs e) => { RaisePropertyChanged("IsEnableAddNote"); };
-            ApplicationCommandsService.AddWebAccountCommand.CanExecuteChanged +=
-                (object sender, EventArgs e) => { RaisePropertyChanged("IsEnabledAddWebAccount"); };
-            ApplicationCommandsService.AddCreditCardCommand.CanExecuteChanged +=
-                (object sender, EventArgs e) => { RaisePropertyChanged("IsEnabledAddCreditCard"); };
-
+            
             RepositoryService = container.Resolve<IRepositoryService>();
             container.Resolve<IEventAggregator>().GetEvent<DbConnectionStatusChangedEvent>().Subscribe(OnConnectionStatusChanged, ThreadOption.UIThread);
 
@@ -99,15 +93,17 @@ namespace Medicom.ViewModels
         {
             get { return ApplicationCommandsService.AddNoteCommand; }
         }
-        
         public ICommand AddWebAccountCommand
         {
             get { return ApplicationCommandsService.AddWebAccountCommand; }
         }
-
         public ICommand AddCreditCardCommand
         {
             get { return ApplicationCommandsService.AddCreditCardCommand; }
+        }
+        public ICommand DeleteItemCommand
+        {
+            get { return ApplicationCommandsService.DeleteItemCommand; }
         }
 
         #endregion

@@ -23,15 +23,20 @@ namespace Medicom.ViewModels
             _AddNoteCommand = new DelegateCommand(OnAddNote, CanAddNote);
             _AddWebAccountCommand = new DelegateCommand(OnAddWebAccount, CanAddWebAccount);
             _AddCreditCardCommand = new DelegateCommand(OnAddCreditCard, CanAddCreditCard);
+            _DeleteItemCommand = new DelegateCommand(OnDeleteItem, CanDeleteItem).ObservesProperty(() => SelectedItem);
+
             RepositoryService = container.Resolve<IRepositoryService>();
             Items = RepositoryService.IsConnect ? 
                 new ObservableCollection<ItemViewModel>(RepositoryService.Items.Select(x => new ItemViewModel(x))) : 
                 new ObservableCollection<ItemViewModel>();
             SelectedItem = Items.FirstOrDefault();
+
             var appCmdService = container.Resolve<IApplicationCommandsService>();
             appCmdService.AddNoteCommand.RegisterCommand(AddNoteCommand);
             appCmdService.AddWebAccountCommand.RegisterCommand(AddWebAccountCommand);
             appCmdService.AddCreditCardCommand.RegisterCommand(AddCreditCardCommand);
+            appCmdService.DeleteItemCommand.RegisterCommand(DeleteItemCommand);
+
             container.Resolve<IEventAggregator>().GetEvent<DbConnectionStatusChangedEvent>().Subscribe(OnConnectionStatusChanged, ThreadOption.UIThread);
         }
 
@@ -80,6 +85,7 @@ namespace Medicom.ViewModels
 
             _AddNoteCommand.RaiseCanExecuteChanged();
             RaisePropertyChanged("IsVisibleItemDetails");
+            RaisePropertyChanged("IsCanAddItem");
         }
 
         #endregion
@@ -126,6 +132,19 @@ namespace Medicom.ViewModels
         private bool CanAddCreditCard()
         {
             return RepositoryService.IsConnect;
+        }
+
+        public ICommand DeleteItemCommand { get { return _DeleteItemCommand; } }
+        private DelegateCommand _DeleteItemCommand;
+        private void OnDeleteItem()
+        {
+            RepositoryService.Items.Remove(SelectedItem.Item);
+            Items.Remove(SelectedItem);
+            SelectedItem = Items.FirstOrDefault();
+        }
+        private bool CanDeleteItem()
+        {
+            return RepositoryService.IsConnect && SelectedItem != null;
         }
 
         #endregion

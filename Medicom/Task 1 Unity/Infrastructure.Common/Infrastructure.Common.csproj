@@ -70,19 +70,17 @@
   <ItemGroup>
     <Compile Include="Events\DAL\DbConnectionStatusChangedEvent.cs" />
     <Compile Include="Models\CreditCard.cs" />
-    <Compile Include="Models\DAL\IRepositoryService.cs" />
+    <Compile Include="Services\DAL\IRepositoryService.cs" />
     <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\Note.cs" />
     <Compile Include="Models\WebAccount.cs" />
     <Compile Include="Modularity\ModuleBase.cs" />
     <Compile Include="Services\IApplicationCommandsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\Configuration\IConfigurationService.cs" />
+    <Compile Include="Services\Configuration\IConfigurationService.cs" />
     <Compile Include="Windows\Converters\BoolToVisibilityConverter.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Navigation\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

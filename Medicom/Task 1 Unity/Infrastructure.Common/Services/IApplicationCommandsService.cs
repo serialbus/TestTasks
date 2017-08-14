@@ -13,5 +13,6 @@ namespace Infrastructure.Common.Services
         CompositeCommand AddNoteCommand { get; }
         CompositeCommand AddWebAccountCommand { get; }
         CompositeCommand AddCreditCardCommand { get; }
+        CompositeCommand DeleteItemCommand { get; }
     }
 }

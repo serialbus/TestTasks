@@ -15,33 +15,37 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding ItemTypeName}" />
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding ItemTypeName}" FontWeight="Bold" Margin="5,5,5,5" TextAlignment="Center" />
 
         <StackPanel Grid.Row="1" 
-                    Orientation="Horizontal">
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Наименование:" />
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Name}" />
+                    Orientation="Horizontal"
+                    Margin="5,5,5,5">
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Наименование:" Margin="5,5,5,5" />
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="5,5,5,5" MinWidth="100" />
         </StackPanel>
 
         <StackPanel Grid.Row="2"
                     Orientation="Horizontal"
-                    Visibility="{Binding IsNote, Converter={StaticResource boolToVisibilityconverter}}">
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="Содержание:" />
-            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Content}" />
+                    Visibility="{Binding IsNote, Converter={StaticResource boolToVisibilityconverter}}"
+                    Margin="5,5,5,5">
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Содержание:" Margin="5,5,5,5" />
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Content, UpdateSourceTrigger=PropertyChanged}" Margin="5,5,5,5" MinWidth="100" />
         </StackPanel>
 
         <StackPanel Grid.Row="2"
                     Orientation="Horizontal"
-                    Visibility="{Binding IsWebAccount, Converter={StaticResource boolToVisibilityconverter}}">
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="URL:" />
-            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Url}" />
+                    Visibility="{Binding IsWebAccount, Converter={StaticResource boolToVisibilityconverter}}"
+                    Margin="5,5,5,5">
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="URL:" Margin="5,5,5,5" />
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Url, UpdateSourceTrigger=PropertyChanged}" Margin="5,5,5,5" MinWidth="100" />
         </StackPanel>
 
         <StackPanel Grid.Row="2"
                     Orientation="Horizontal"
-                    Visibility="{Binding IsCreditCard, Converter={StaticResource boolToVisibilityconverter}}">
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="Дата окончания:" />
-            <DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding ExpirationDate}" />
+                    Visibility="{Binding IsCreditCard, Converter={StaticResource boolToVisibilityconverter}}"
+                    Margin="5,5,5,5">
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Дата окончания:" Margin="5,5,5,5" />
+            <DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding ExpirationDate}" Margin="5,5,5,5" MinWidth="100" />
         </StackPanel>
 
     </Grid>
