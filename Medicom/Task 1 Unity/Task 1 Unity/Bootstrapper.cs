@@ -9,6 +9,9 @@ using DAL.Services;
 using Infrastructure.Common.Models.Configuration;
 using Prism.Events;
 using Medicom.ViewModels.Services;
+using Prism.Regions;
+using System;
+using Infrastructure.Common.Services;
 
 namespace Medicom
 {
@@ -22,6 +25,15 @@ namespace Medicom
         protected override void InitializeShell()
         {
             Application.Current.MainWindow.Show();
+            var regionManager = this.Container.Resolve<IRegionManager>();
+
+            var region = regionManager.Regions["ContentRegion"];
+            region.RemoveAll();
+            region.Add(this.Container.Resolve<ItemsView>());
+
+            region = regionManager.Regions["MenuRegion"];
+            region.RemoveAll();
+            region.Add(this.Container.Resolve<MenuView>());
         }
 
         protected override void ConfigureModuleCatalog()
@@ -41,6 +53,7 @@ namespace Medicom
             base.ConfigureContainer();
             Container.RegisterType<IConfigurationService, ConfigurationService>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IRepositoryService, RepositoryService>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IApplicationCommandsService, ApplicationCommandsService>(new ContainerControlledLifetimeManager());
         }
     }
 }

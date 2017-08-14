@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Medicom.Views.MenuView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"             
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <Grid>
+        <Menu VerticalAlignment="Top">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Сохранить" IsEnabled="{Binding IsEnableSaveFile}" Command="{Binding SaveFileCommand}" />
+                <Separator />
+                <MenuItem Header="Выйти" Command="{Binding ExitCommand}" />
+            </MenuItem>
+            <MenuItem Header="Редактировать">
+                <MenuItem Header="Добавить Замечание" IsEnabled="{Binding IsEnableAddNote}" Command="{Binding AddNoteCommand}" />
+                <MenuItem Header="Добавить Кредитную карту" IsEnabled="{Binding IsEnabledAddCreditCard}" Command="{Binding AddCreditCardCommand}" />
+                <MenuItem Header="Добавить Web-аккаунт" IsEnabled="{Binding IsEnabledAddWebAccount}" Command="{Binding AddWebAccountCommand}" />
+                <Separator />
+                <MenuItem Header="Удалить Замечание" />
+                <MenuItem Header="Удалить Кредитную карту" />
+                <MenuItem Header="Удалить Web-аккаунт" />
+            </MenuItem>
+        </Menu>
+    </Grid>
+</UserControl>
