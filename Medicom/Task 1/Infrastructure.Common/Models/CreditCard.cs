@@ -14,5 +14,7 @@ namespace Infrastructure.Common.Models
         public string Name { get; set; }
         [XmlElement]
         public DateTime ExpirationDate { get; set; }
+        [XmlElement]
+        public int Number { get; set; }
     }
 }

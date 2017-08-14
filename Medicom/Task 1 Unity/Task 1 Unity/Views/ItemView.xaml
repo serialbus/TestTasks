@@ -20,32 +20,38 @@
         <StackPanel Grid.Row="1" 
                     Orientation="Horizontal"
                     Margin="5,5,5,5">
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Наименование:" Margin="5,5,5,5" />
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="5,5,5,5" MinWidth="100" />
+            <TextBlock Text="Наименование:" Margin="5,5,5,5" />
+            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="5,5,5,5" MinWidth="100" />
         </StackPanel>
 
         <StackPanel Grid.Row="2"
                     Orientation="Horizontal"
                     Visibility="{Binding IsNote, Converter={StaticResource boolToVisibilityconverter}}"
                     Margin="5,5,5,5">
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="Содержание:" Margin="5,5,5,5" />
-            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Content, UpdateSourceTrigger=PropertyChanged}" Margin="5,5,5,5" MinWidth="100" />
+            <TextBlock Text="Содержание:" Margin="5,5,5,5" />
+            <TextBox Text="{Binding Content, UpdateSourceTrigger=PropertyChanged}" Margin="5,5,5,5" MinWidth="100" />
         </StackPanel>
 
         <StackPanel Grid.Row="2"
                     Orientation="Horizontal"
                     Visibility="{Binding IsWebAccount, Converter={StaticResource boolToVisibilityconverter}}"
                     Margin="5,5,5,5">
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="URL:" Margin="5,5,5,5" />
-            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Url, UpdateSourceTrigger=PropertyChanged}" Margin="5,5,5,5" MinWidth="100" />
+            <TextBlock Text="URL:" Margin="5,5,5,5" />
+            <TextBox Text="{Binding Url, UpdateSourceTrigger=PropertyChanged}" Margin="5,5,5,5" MinWidth="100" />
         </StackPanel>
 
         <StackPanel Grid.Row="2"
-                    Orientation="Horizontal"
+                    Orientation="Vertical"
                     Visibility="{Binding IsCreditCard, Converter={StaticResource boolToVisibilityconverter}}"
                     Margin="5,5,5,5">
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="Дата окончания:" Margin="5,5,5,5" />
-            <DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding ExpirationDate}" Margin="5,5,5,5" MinWidth="100" />
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Дата окончания:" Margin="5,5,5,5" />
+                <DatePicker SelectedDate="{Binding ExpirationDate}" Margin="5,5,5,5" MinWidth="100"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Номер:" Margin="5,5,5,5" />
+                <TextBox Text="{Binding Number, UpdateSourceTrigger=PropertyChanged}" Margin="5,5,5,5" MinWidth="100" />
+            </StackPanel>
         </StackPanel>
 
     </Grid>

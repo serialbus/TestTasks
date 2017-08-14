@@ -12,5 +12,13 @@ namespace Infrastructure.Common.Models
     {
         [XmlElement]
         public DateTime ExpirationDate { get; set; }
+        [XmlElement]
+        public int Number { get; set; }
+
+        public override string AsString()
+        {
+            return string.Format("Наименование: {0} Номер: {1} Дата окончания: {2}",
+                Name, Number, ExpirationDate.ToShortDateString());
+        }
     }
 }

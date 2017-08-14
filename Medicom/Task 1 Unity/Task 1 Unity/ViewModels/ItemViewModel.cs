@@ -104,6 +104,25 @@ namespace Medicom.ViewModels
             }
         }
 
+        public int Number
+        {
+            get { return Item is CreditCard ? (Item as CreditCard).Number : 0; }
+            set
+            {
+                if (Item is CreditCard)
+                {
+                    var item = Item as CreditCard;
+                    item.Number = value;
+                    RaisePropertyChanged("Number");
+                }
+            }
+        }
+
+        public string Description
+        {
+            get { return Item.AsString(); }
+        }
+
         #endregion
     }
 }

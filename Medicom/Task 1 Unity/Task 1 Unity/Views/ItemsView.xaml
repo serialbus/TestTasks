@@ -23,7 +23,7 @@
                     <Border BorderBrush="Blue" 
                             BorderThickness="1" 
                             Margin="10">
-                        <TextBlock Text="{Binding Name}" FontWeight="Bold" Padding="5,2,5,2" />
+                        <TextBlock Text="{Binding Description}" FontWeight="Bold" Padding="5,2,5,2" />
                     </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
