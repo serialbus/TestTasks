@@ -24,10 +24,5 @@ namespace Infrastructure.Common.Models
             get { return Url != null ? Url.AbsoluteUri : null; }
             set { Url = String.IsNullOrEmpty(value) ? null : new Uri(value); }
         }
-
-        public override string AsString()
-        {
-            return String.Format("Наименование: {0} URL: {1}", Name, UrlAsString);
-        }
     }
 }

@@ -4,6 +4,7 @@ using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Medicom.ViewModels
 {
@@ -59,6 +60,18 @@ namespace Medicom.ViewModels
             {
                 Item.Name = value;
                 RaisePropertyChanged("Name");
+                RaisePropertyChanged("FormattedDescription");
+            }
+        }
+
+        private bool _IsHighLightedName = false;
+        public bool IsHighLightedName
+        {
+            get { return _IsHighLightedName; }
+            set
+            {
+                _IsHighLightedName = value;
+                RaisePropertyChanged("FormattedDescription");
             }
         }
 
@@ -72,7 +85,19 @@ namespace Medicom.ViewModels
                     var item = Item as Note;
                     item.Content = value;
                     RaisePropertyChanged("Content");
+                    RaisePropertyChanged("FormattedDescription");
                 }
+            }
+        }
+
+        private bool _IsHighLightedContent = false;
+        public bool IsHighLightedContent
+        {
+            get { return _IsHighLightedContent; }
+            set
+            {
+                _IsHighLightedContent = value;
+                RaisePropertyChanged("FormattedDescription");
             }
         }
 
@@ -86,7 +111,19 @@ namespace Medicom.ViewModels
                     var item = Item as WebAccount;
                     item.UrlAsString = value;
                     RaisePropertyChanged("Url");
+                    RaisePropertyChanged("FormattedDescription");
                 }
+            }
+        }
+
+        private bool _IsHighLightedUrl = false;
+        public bool IsHighLightedUrl
+        {
+            get { return _IsHighLightedUrl; }
+            set
+            {
+                _IsHighLightedUrl = value;
+                RaisePropertyChanged("FormattedDescription");
             }
         }
 
@@ -100,7 +137,19 @@ namespace Medicom.ViewModels
                     var item = Item as CreditCard;
                     item.ExpirationDate = value;
                     RaisePropertyChanged("ExpirationDate");
+                    RaisePropertyChanged("FormattedDescription");
                 }
+            }
+        }
+
+        private bool _IsHighLightedExpirationDate = false;
+        public bool IsHighLightedExpirationDate
+        {
+            get { return _IsHighLightedExpirationDate; }
+            set
+            {
+                _IsHighLightedExpirationDate = value;
+                RaisePropertyChanged("FormattedDescription");
             }
         }
 
@@ -114,14 +163,124 @@ namespace Medicom.ViewModels
                     var item = Item as CreditCard;
                     item.Number = value;
                     RaisePropertyChanged("Number");
+                    RaisePropertyChanged("FormattedDescription");
                 }
+            }
+        }
+
+        private bool _IsHighLighteNumber = false;
+        public bool IsHighLighteNumber
+        {
+            get { return _IsHighLighteNumber; }
+            set
+            {
+                _IsHighLighteNumber = value;
+                RaisePropertyChanged("FormattedDescription");
             }
         }
 
         public string Description
         {
-            get { return Item.AsString(); }
+            get
+            {
+                if (IsNote)
+                {
+                    return String.Format("{0} {1}", Name, Content);
+                }
+                else if (IsCreditCard)
+                {
+                    return string.Format("{0} {1} {2}",
+                        Name, Number, ExpirationDate.ToShortDateString());
+                }
+                else if (IsWebAccount)
+                {
+                    return String.Format("{0} {1}", Name, Url);
+                }
+                else
+                    return String.Empty;
+            }
         }
+
+        public string FormattedDescription
+        {
+            get
+            {
+                if (IsNote)
+                {
+                    if (IsHighLightedName || IsHighLightedContent)
+                    {
+                        var sb = new StringBuilder();
+                        if (IsHighLightedName)
+                            sb.AppendFormat("<strong>{0}</strong> ", Name);
+                        else
+                            sb.Append(Name + " ");
+
+                        if (IsHighLightedContent)
+                            sb.AppendFormat("<strong>{0}</strong>", Content);
+                        else
+                            sb.Append(Content);
+                        return sb.ToString();
+                    }
+                }
+                else if (IsCreditCard)
+                {
+                    if (IsHighLightedName || IsHighLighteNumber || IsHighLightedExpirationDate)
+                    {
+                        var sb = new StringBuilder();
+
+                        if (IsHighLightedName)
+                            sb.AppendFormat("<strong>{0}</strong> ", Name);
+                        else
+                            sb.Append(Name + " ");
+
+                        if (IsHighLighteNumber)
+                            sb.AppendFormat("<strong>{0}</strong> ", Number);
+                        else
+                            sb.Append(Number + " ");
+
+                        if (IsHighLightedExpirationDate)
+                            sb.AppendFormat("<strong>{0}</strong>", ExpirationDate.ToShortDateString());
+                        else
+                            sb.Append(ExpirationDate.ToShortDateString());
+                        return sb.ToString();
+                    }
+                }
+                else if (IsWebAccount)
+                {
+                    if (IsHighLightedName || IsHighLightedUrl)
+                    {
+                        var sb = new StringBuilder();
+                        if (IsHighLightedName)
+                            sb.AppendFormat("<strong>{0}</strong> ", Name);
+                        else
+                            sb.Append(Name + " ");
+
+                        if (IsHighLightedUrl)
+                            sb.AppendFormat("<strong>{0}</strong>", Url);
+                        else
+                            sb.Append(Url);
+                        return sb.ToString();
+                    }
+                }
+
+                return Description;
+            }
+        }
+
+        private bool _IsVisible = true;
+        public bool IsVisible
+        {
+            get { return _IsVisible; }
+            set
+            {
+                _IsVisible = value;
+                RaisePropertyChanged("IsVisible");
+            }
+        }
+
+        #endregion
+
+        #region Methods
 
         #endregion
     }

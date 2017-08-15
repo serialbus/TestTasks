@@ -11,7 +11,5 @@ namespace Infrastructure.Common.Models
     {
         [XmlElement]
         public string Name { get; set; }
-
-        public abstract string AsString();
     }
 }

@@ -12,10 +12,5 @@ namespace Infrastructure.Common.Models
     {
         [XmlElement]
         public string Content { get; set; }
-
-        public override string AsString()
-        {
-            return String.Format("Наименование: {0} Содержание: {1}", Name, Content);
-        }
     }
 }

@@ -65,6 +65,22 @@ namespace Medicom.ViewModels
             get { return _SelectedItem != null; }
         }
 
+        private string _Keyword;
+        public string Keyword
+        {
+            get { return _Keyword; }
+            set
+            {
+                _Keyword = value;
+                SetFilter();
+            }
+        }
+
+        public bool IsEnabledFilter
+        {
+            get { return Items != null; }
+        }
+
         #endregion
 
         #region Methods
@@ -86,6 +102,46 @@ namespace Medicom.ViewModels
             _AddNoteCommand.RaiseCanExecuteChanged();
             RaisePropertyChanged("IsVisibleItemDetails");
             RaisePropertyChanged("IsCanAddItem");
+        }
+
+        private void SetFilter()
+        {
+            if (String.IsNullOrEmpty(Keyword))
+            {
+                // Сбрасываем фильтр
+                foreach (var item in Items)
+                {
+                    item.IsHighLightedContent = item.IsHighLightedExpirationDate = item.IsHighLightedName = 
+                        item.IsHighLightedUrl = item.IsHighLighteNumber = false;
+                    item.IsVisible = true;
+                }
+            }
+            else
+            {
+                foreach (var item in Items)
+                {
+                    item.IsHighLightedName = item.Name == Keyword;
+
+                    if (item.IsCreditCard)
+                    {
+                        item.IsHighLighteNumber = item.Number.ToString() == Keyword;
+                        item.IsHighLightedExpirationDate = item.ExpirationDate.ToShortDateString() == Keyword;
+                        item.IsVisible = item.IsHighLightedName || item.IsHighLighteNumber || item.IsHighLightedExpirationDate;
+                    }
+                    else if (item.IsNote)
+                    {
+                        item.IsHighLightedContent = item.Content == Keyword;
+                        item.IsVisible = item.IsHighLightedName || item.IsHighLightedContent;
+                    }
+                    else if (item.IsWebAccount)
+                    {
+                        item.IsHighLightedUrl = item.Url == Keyword;
+                        item.IsVisible = item.IsHighLightedName || item.IsHighLightedUrl;
+                    }
+                    else
+                        item.IsVisible = false;
+                }
+            }
         }
 
         #endregion
