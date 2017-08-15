@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Medicom</RootNamespace>
-    <AssemblyName>Task 1 Unity</AssemblyName>
+    <AssemblyName>Task 1Unity</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -103,6 +103,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Converters\ItemViewModelToTextBlockConverter.cs" />
     <Compile Include="Services\ApplicationCommandsService.cs" />
     <Compile Include="Services\ConfigurationService.cs" />
     <Compile Include="ViewModels\ItemsViewModel.cs" />

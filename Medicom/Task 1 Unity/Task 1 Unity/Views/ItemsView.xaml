@@ -4,10 +4,12 @@
              xmlns:prism="http://prismlibrary.com/"
              xmlns:views="clr-namespace:Medicom.Views"
              xmlns:converters="clr-namespace:Infrastructure.Common.Windows.Converters;assembly=Infrastructure.Common"
+             xmlns:cnv="clr-namespace:Medicom.Converters"
              prism:ViewModelLocator.AutoWireViewModel="True">
     <UserControl.Resources>
         <converters:BoolToVisibilityConverter x:Key="boolToVisibilityconverter" />
         <converters:TextDecoratorConverter x:Key="textDecoratorConverter" />
+        <cnv:ItemViewModelToTextBlockConverter x:Key="itemConverter" />
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -30,8 +32,9 @@
                             Margin="10"
                             Visibility="{Binding IsVisible, Converter={StaticResource boolToVisibilityconverter}}">
                         <!--<TextBlock Text="{Binding Description}" FontWeight="Bold" Padding="5,2,5,2" />-->
-                        <ContentControl Grid.Row="3" 
-                                        Content="{Binding FormattedDescription, Converter={StaticResource textDecoratorConverter}}" Margin="5,5,5,5" />
+                        <!--<ContentControl Grid.Row="3" 
+                                        Content="{Binding FormattedDescription, Converter={StaticResource textDecoratorConverter}}" Margin="5,5,5,5" />-->
+                        <ContentControl Content="{Binding ItemVM, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource itemConverter}}" Margin="5,5,5,5"/>
                     </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>

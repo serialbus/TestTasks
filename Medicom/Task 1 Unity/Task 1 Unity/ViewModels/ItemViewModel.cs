@@ -23,6 +23,8 @@ namespace Medicom.ViewModels
 
         public ModelBase Item { get; private set; }
 
+        public ItemViewModel ItemVM { get { return this; } }
+
         public string ItemTypeName
         {
             get
@@ -60,7 +62,7 @@ namespace Medicom.ViewModels
             {
                 Item.Name = value;
                 RaisePropertyChanged("Name");
-                RaisePropertyChanged("FormattedDescription");
+                RaisePropertyChanged("ItemVM");
             }
         }
 
@@ -71,7 +73,7 @@ namespace Medicom.ViewModels
             set
             {
                 _IsHighLightedName = value;
-                RaisePropertyChanged("FormattedDescription");
+                RaisePropertyChanged("ItemVM");
             }
         }
 
@@ -85,7 +87,7 @@ namespace Medicom.ViewModels
                     var item = Item as Note;
                     item.Content = value;
                     RaisePropertyChanged("Content");
-                    RaisePropertyChanged("FormattedDescription");
+                    RaisePropertyChanged("ItemVM");
                 }
             }
         }
@@ -97,7 +99,7 @@ namespace Medicom.ViewModels
             set
             {
                 _IsHighLightedContent = value;
-                RaisePropertyChanged("FormattedDescription");
+                RaisePropertyChanged("ItemVM");
             }
         }
 
@@ -111,7 +113,7 @@ namespace Medicom.ViewModels
                     var item = Item as WebAccount;
                     item.UrlAsString = value;
                     RaisePropertyChanged("Url");
-                    RaisePropertyChanged("FormattedDescription");
+                    RaisePropertyChanged("ItemVM");
                 }
             }
         }
@@ -123,7 +125,7 @@ namespace Medicom.ViewModels
             set
             {
                 _IsHighLightedUrl = value;
-                RaisePropertyChanged("FormattedDescription");
+                RaisePropertyChanged("ItemVM");
             }
         }
 
@@ -137,7 +139,7 @@ namespace Medicom.ViewModels
                     var item = Item as CreditCard;
                     item.ExpirationDate = value;
                     RaisePropertyChanged("ExpirationDate");
-                    RaisePropertyChanged("FormattedDescription");
+                    RaisePropertyChanged("ItemVM");
                 }
             }
         }
@@ -149,7 +151,7 @@ namespace Medicom.ViewModels
             set
             {
                 _IsHighLightedExpirationDate = value;
-                RaisePropertyChanged("FormattedDescription");
+                RaisePropertyChanged("ItemVM");
             }
         }
 
@@ -163,7 +165,7 @@ namespace Medicom.ViewModels
                     var item = Item as CreditCard;
                     item.Number = value;
                     RaisePropertyChanged("Number");
-                    RaisePropertyChanged("FormattedDescription");
+                    RaisePropertyChanged("ItemVM");
                 }
             }
         }
@@ -175,95 +177,7 @@ namespace Medicom.ViewModels
             set
             {
                 _IsHighLighteNumber = value;
-                RaisePropertyChanged("FormattedDescription");
-            }
-        }
-
-        public string Description
-        {
-            get
-            {
-                if (IsNote)
-                {
-                    return String.Format("{0} {1}", Name, Content);
-                }
-                else if (IsCreditCard)
-                {
-                    return string.Format("{0} {1} {2}",
-                        Name, Number, ExpirationDate.ToShortDateString());
-                }
-                else if (IsWebAccount)
-                {
-                    return String.Format("{0} {1}", Name, Url);
-                }
-                else
-                    return String.Empty;
-            }
-        }
-
-        public string FormattedDescription
-        {
-            get
-            {
-                if (IsNote)
-                {
-                    if (IsHighLightedName || IsHighLightedContent)
-                    {
-                        var sb = new StringBuilder();
-                        if (IsHighLightedName)
-                            sb.AppendFormat("<strong>{0}</strong> ", Name);
-                        else
-                            sb.Append(Name + " ");
-
-                        if (IsHighLightedContent)
-                            sb.AppendFormat("<strong>{0}</strong>", Content);
-                        else
-                            sb.Append(Content);
-                        return sb.ToString();
-                    }
-                }
-                else if (IsCreditCard)
-                {
-                    if (IsHighLightedName || IsHighLighteNumber || IsHighLightedExpirationDate)
-                    {
-                        var sb = new StringBuilder();
-
-                        if (IsHighLightedName)
-                            sb.AppendFormat("<strong>{0}</strong> ", Name);
-                        else
-                            sb.Append(Name + " ");
-
-                        if (IsHighLighteNumber)
-                            sb.AppendFormat("<strong>{0}</strong> ", Number);
-                        else
-                            sb.Append(Number + " ");
-
-                        if (IsHighLightedExpirationDate)
-                            sb.AppendFormat("<strong>{0}</strong>", ExpirationDate.ToShortDateString());
-                        else
-                            sb.Append(ExpirationDate.ToShortDateString());
-                        return sb.ToString();
-                    }
-                }
-                else if (IsWebAccount)
-                {
-                    if (IsHighLightedName || IsHighLightedUrl)
-                    {
-                        var sb = new StringBuilder();
-                        if (IsHighLightedName)
-                            sb.AppendFormat("<strong>{0}</strong> ", Name);
-                        else
-                            sb.Append(Name + " ");
-
-                        if (IsHighLightedUrl)
-                            sb.AppendFormat("<strong>{0}</strong>", Url);
-                        else
-                            sb.Append(Url);
-                        return sb.ToString();
-                    }
-                }
-
-                return Description;
+                RaisePropertyChanged("ItemVM");
             }
         }
 
@@ -275,6 +189,7 @@ namespace Medicom.ViewModels
             {
                 _IsVisible = value;
                 RaisePropertyChanged("IsVisible");
+                RaisePropertyChanged("ItemVM");
             }
         }
 
