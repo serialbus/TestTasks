@@ -2,6 +2,8 @@
 using Prism.Unity;
 using Medicom.Task2.Views;
 using System.Windows;
+using MultimediaModule;
+using Prism.Modularity;
 
 namespace Medicom.Task2
 {
@@ -15,6 +17,18 @@ namespace Medicom.Task2
 		protected override void InitializeShell()
 		{
 			Application.Current.MainWindow.Show();
+		}
+
+		protected override void ConfigureModuleCatalog()
+		{
+			//base.ConfigureModuleCatalog();
+			var moduleType = typeof(MultimediaModule.MultimediaModule);
+			ModuleCatalog.AddModule(new ModuleInfo
+			{
+				ModuleName = moduleType.Name,
+				ModuleType = moduleType.AssemblyQualifiedName,
+				InitializationMode = InitializationMode.WhenAvailable
+			});
 		}
 	}
 }
