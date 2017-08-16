@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 		..\Documents\Тестовое задание. WPF разработчик.pdf = ..\Documents\Тестовое задание. WPF разработчик.pdf
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Moduls", "Moduls", "{101F3030-ABB0-4AB4-A80C-66E5F67058F5}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{101F3030-ABB0-4AB4-A80C-66E5F67058F5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{AB8B448C-DD74-4D60-A041-3E5D03A32180}"
 EndProject
