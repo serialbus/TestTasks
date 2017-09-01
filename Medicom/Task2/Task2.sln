@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{7278
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultimediaModule", "MultimediaModule\MultimediaModule.csproj", "{AB8B448C-DD74-4D60-A041-3E5D03A32180}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Video", "Video\Video.csproj", "{3264769E-A982-4778-A6B6-81FDC4FA64B1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{AB8B448C-DD74-4D60-A041-3E5D03A32180}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB8B448C-DD74-4D60-A041-3E5D03A32180}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB8B448C-DD74-4D60-A041-3E5D03A32180}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3264769E-A982-4778-A6B6-81FDC4FA64B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3264769E-A982-4778-A6B6-81FDC4FA64B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3264769E-A982-4778-A6B6-81FDC4FA64B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3264769E-A982-4778-A6B6-81FDC4FA64B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,5 +50,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{34D6CCD5-4825-4561-8C75-887252E4711D} = {38406A07-385C-4F16-B8D1-5FB87BC3EC97}
 		{AB8B448C-DD74-4D60-A041-3E5D03A32180} = {72783D96-41BD-4F2A-AF12-A5B8CF8047F8}
+		{3264769E-A982-4778-A6B6-81FDC4FA64B1} = {38406A07-385C-4F16-B8D1-5FB87BC3EC97}
 	EndGlobalSection
 EndGlobal

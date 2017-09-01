@@ -15,7 +15,6 @@ namespace MultimediaModule
 
 		public void Initialize()
 		{
-			throw new NotImplementedException();
 		}
 	}
 }
