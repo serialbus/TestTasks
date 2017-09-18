@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="OrdersModule.Views.OrderEditorDialogView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:OrdersModule.Views">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
+		<StackPanel Grid.Row="0" 
+					Orientation="Vertical">
+			<TextBlock Text="Исполнитель замера:" Margin="5,5,5,5" />
+			<ComboBox ItemsSource="{Binding Offices}" 
+					  SelectedItem="{Binding SelectedOffice}"
+					  DisplayMemberPath="Name" />
+
+			<TextBlock  Text="Дата и время выполнения замера:" 
+					   TextWrapping="Wrap" Margin="5,5,5,5"/>
+			<DatePicker Name="_DatePicker"
+						Grid.Column="1" Grid.Row="4"
+						IsEnabled="{Binding IsEnabledSelectionDate}"
+						SelectedDate="{Binding SelectedDate}"
+						DisplayDateStart="{Binding DateStart}"
+						Margin="5,5,5,5">
+			</DatePicker>
+			<TextBlock Text="Расписание:" />
+			<ItemsControl ItemsSource="{Binding DaySchedule}">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<RadioButton GroupName="GroupSelectTime" 
+									 Content="{Binding .Item1}" 
+									 ContentStringFormat="hh:mm:ss"
+									 IsEnabled="{Binding .Item2}"
+									 Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}},
+													Path=DataContext.SelectedTimeCommand}" CommandParameter="{Binding .Item1}" />
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</StackPanel>
+
+		<StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5,5,5,5" HorizontalAlignment="Right">
+			<Button Content="OK" Command="{Binding ConfirmCommand}" MinWidth="150" />
+			<Button Content="Отмена" Command="{Binding RejectCommand}" MinWidth="150" />
+		</StackPanel>
+	</Grid>
+</UserControl>

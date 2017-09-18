@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="OrdersModule.Views.CustomersView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:OrdersModule.Views">
+	<Grid>
+		<DataGrid ItemsSource="{Binding Customers}" 
+				  SelectedItem="{Binding SelectedCustomer}" 
+				  AutoGenerateColumns="False"
+				  IsReadOnly="True">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="Auto" />
+				<DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="Auto" />
+				<DataGridTextColumn Header="Отчество" Binding="{Binding MiddleName}" Width="*" />
+			</DataGrid.Columns>
+		</DataGrid>
+	</Grid>
+</UserControl>

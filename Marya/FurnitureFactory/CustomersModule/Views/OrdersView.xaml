@@ -1,0 +1,108 @@
+﻿<UserControl x:Class="OrdersModule.Views.OrdersView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:OrdersModule.Views"
+			 xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:prism="http://www.codeplex.com/prism">
+	
+	<i:Interaction.Triggers>
+		<prism:InteractionRequestTrigger SourceObject="{Binding NotificationRequest, Mode=OneWay}">
+			<!-- This PopupWindowAction does not have a custom view defined, therefore it will try to use a DefaultConfirmationWindow -->
+			<!-- which is a window used by default by Prism to shown IConfirmation implementations -->
+			<!-- That window will be show as a modal dialog and centered over this window -->
+			<prism:PopupWindowAction IsModal="True" CenterOverAssociatedObject="True"/>
+		</prism:InteractionRequestTrigger>
+		
+		<prism:InteractionRequestTrigger SourceObject="{Binding ConfirmationDialogRequest, Mode=OneWay}">
+			<prism:PopupWindowAction IsModal="True" CenterOverAssociatedObject="True">
+				<prism:PopupWindowAction.WindowContent>
+					<local:OrderDetailsView />
+				</prism:PopupWindowAction.WindowContent>
+			</prism:PopupWindowAction>
+		</prism:InteractionRequestTrigger>
+
+	</i:Interaction.Triggers>
+
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto"></ColumnDefinition>
+			<ColumnDefinition Width="*"></ColumnDefinition>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+
+		<DataGrid Grid.Column="0" Grid.Row="0"
+				  AutoGenerateColumns="False"
+				  ItemsSource="{Binding Orders}" 
+				  SelectedItem="{Binding SelectedOrder}"
+				  IsReadOnly="True"
+				  Margin="5,5,5,5">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Номер заказа" 
+									Binding="{Binding OrderNumber}" 
+									Width="Auto" />
+				<DataGridTextColumn Header="Время исполнения" 
+									Binding="{Binding ExecutionTime, StringFormat='dd.MM.yyy hh:mm:ss'}" 
+									Width="Auto" />
+			</DataGrid.Columns>
+		</DataGrid>
+
+		<Grid Grid.Column="1" Grid.Row="0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" 
+					   Text="Заказчик" 
+					   Margin="5,5,5,5" 
+					   TextAlignment="Center"
+					   FontWeight="Bold"/>
+
+			<TextBlock Grid.Column="0" Grid.Row="1" Margin="5,5,5,5" Text="Фамилия:" />
+			<TextBlock Grid.Column="0" Grid.Row="2" Margin="5,5,5,5" Text="Имия:" />
+			<TextBlock Grid.Column="0" Grid.Row="3" Margin="5,5,5,5" Text="Отчество:" />
+			<TextBlock Grid.Column="0" Grid.Row="4" Margin="5,5,5,5" Text="Адрес:" />
+
+			<TextBlock Grid.Column="1" Grid.Row="1" Margin="5,5,5,5" Text="{Binding SelectedCustomer.LastName}" />
+			<TextBlock Grid.Column="1" Grid.Row="2" Margin="5,5,5,5" Text="{Binding SelectedCustomer.FirstName}" />
+			<TextBlock Grid.Column="1" Grid.Row="3" Margin="5,5,5,5" Text="{Binding SelectedCustomer.MiddleName}" />
+			<TextBlock Grid.Column="1" Grid.Row="4" Margin="5,5,5,5" Text="{Binding SelectedCustomer.Address}" TextWrapping="Wrap" />
+
+			<TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" 
+					   Margin="5,5,5,5" 
+					   Text="Офис исполнитель" 
+					   TextAlignment="Center"
+					   FontWeight="Bold"/>
+
+			<TextBlock Grid.Column="0" Grid.Row="6" Margin="5,5,5,5" Text="Наименование:" />
+			<TextBlock Grid.Column="1" Grid.Row="7" Margin="5,5,5,5" Text="{Binding SelectedOffice.Name}" />
+		</Grid>
+		
+		<StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1"
+					Orientation="Vertical">
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Text="Заказ выполнен:" Margin="5,5,5,5" HorizontalAlignment="Center" />
+				<CheckBox IsChecked="{Binding IsDone, UpdateSourceTrigger=PropertyChanged}"
+						  IsEnabled="{Binding IsCanSetOrderStatus}"
+						  HorizontalAlignment="Right" 
+						  Margin="5,8,5,5"
+						  IsThreeState="False"/>
+			</StackPanel>
+			<Button Content="Создать заказ" Command="{Binding AddOrderCommand}" Margin="5,5,5,5"></Button>
+		</StackPanel>
+					
+	</Grid>
+</UserControl>

@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="OrdersModule.Views.OrdersDispatcherView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:OrdersModule.Views"
+			 xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:prism="http://www.codeplex.com/prism">
+
+	<i:Interaction.Triggers>
+		<prism:InteractionRequestTrigger SourceObject="{Binding ConfirmationDialogRequest, Mode=OneWay}">
+			<prism:PopupWindowAction IsModal="True" CenterOverAssociatedObject="True">
+				<prism:PopupWindowAction.WindowContent>
+					<local:OrderEditorDialogView />
+				</prism:PopupWindowAction.WindowContent>
+			</prism:PopupWindowAction>
+		</prism:InteractionRequestTrigger>
+	</i:Interaction.Triggers>
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
+		<DataGrid Grid.Row="0"
+				  ItemsSource="{Binding Orders}" 
+				  SelectedItem="{Binding SelectedOrder}"
+				  IsReadOnly="True"
+				  AutoGenerateColumns="False"
+				  ScrollViewer.CanContentScroll="True"
+				  ScrollViewer.VerticalScrollBarVisibility="Auto"
+				  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+				  Margin="5,5,5,5">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Номер" Binding="{Binding Order.OrderNumber}" MinWidth="100" Width="Auto" />
+				<DataGridTextColumn Header="Заказчик" Binding="{Binding CustomerFullName}" MinWidth="150" Width="Auto" />
+				<DataGridTextColumn Header="Исполнитель" Binding="{Binding Office.Name}" MinWidth="150" Width="Auto" />
+				<DataGridTextColumn Header="Дата замера" Binding="{Binding ExecutionTime}" MinWidth="100" Width="Auto" />
+				<DataGridCheckBoxColumn Header="Выполнен" Binding="{Binding IsDone}" MinWidth="50" Width="*" />
+			</DataGrid.Columns>
+		</DataGrid>
+
+		<Button Grid.Row="1"
+				Content="Редактировать"
+				Margin="5,5,5,5" 
+				MinWidth="100" 
+				Command="{Binding EditOrderCommand}"/>
+	</Grid>
+</UserControl>
