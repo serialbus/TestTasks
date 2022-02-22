@@ -4,5 +4,6 @@
     {
         public const string OrdersModule = "OrdersModule";
         public const string TestModule = "TestModule";
+        public const string DialogTestModule = "DialogTestModule";
     }
 }

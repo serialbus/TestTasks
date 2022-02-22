@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "Infrastructure.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestModule", "TestModule\TestModule.csproj", "{71A10C17-21B6-4EA6-AD44-E039FC62C419}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DialogTestModule", "DialogTestModule\DialogTestModule\DialogTestModule.csproj", "{4AFFB4B7-51DD-403F-9AE2-C0412AC77A37}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DialogTestModule", "DialogTestModule\DialogTestModule.csproj", "{4AFFB4B7-51DD-403F-9AE2-C0412AC77A37}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
