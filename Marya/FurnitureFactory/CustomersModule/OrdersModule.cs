@@ -1,7 +1,7 @@
-﻿using OrdersModule.Views;
-using Infrastructure.Common.Module;
+﻿using Infrastructure.Common.Module;
 using Infrastructure.Common.Services;
 using Microsoft.Practices.Unity;
+using OrdersModule.Views;
 using Prism.Commands;
 using Prism.Modularity;
 using Prism.Regions;
@@ -9,128 +9,128 @@ using System.Windows.Input;
 
 namespace CustomersModule
 {
-	[Module(ModuleName = WellKnownModuleNames.OrdersModule, OnDemand = false)]
-	public class OrdersModule : ModuleBase
-	{
-		#region Constructors
+    [Module(ModuleName = WellKnownModuleNames.OrdersModule, OnDemand = false)]
+    public class OrdersModule : ModuleBase
+    {
+        #region Constructors
 
-		public OrdersModule(IUnityContainer container, IRegionManager regionManager): base(container, regionManager)
-		{
-			Container = container;
-			RegionManager = regionManager;
+        public OrdersModule(IUnityContainer container, IRegionManager regionManager) : base(container, regionManager)
+        {
+            Container = container;
+            RegionManager = regionManager;
 
-			_ShowCustomersCommand = new DelegateCommand(OnShowCustomers, CanShowCustomers);
-			_ShowOrdersCommand = new DelegateCommand(OnShowOrders, CanShowOrders);
-			_ShowOfficesCommand = new DelegateCommand(OnShowOffices, CanShowOffices);
-			_ShowClientAddsOrderCommand = new DelegateCommand(OnShowClientAddsOrder, CanShowClientAddsOrder);
-			_ShowOredersDispatcherCommand = new DelegateCommand(OnShowOredersDispatcher, CanShowOredersDispatcher);
-		}
+            _ShowCustomersCommand = new DelegateCommand(OnShowCustomers, CanShowCustomers);
+            _ShowOrdersCommand = new DelegateCommand(OnShowOrders, CanShowOrders);
+            _ShowOfficesCommand = new DelegateCommand(OnShowOffices, CanShowOffices);
+            _ShowClientAddsOrderCommand = new DelegateCommand(OnShowClientAddsOrder, CanShowClientAddsOrder);
+            _ShowOredersDispatcherCommand = new DelegateCommand(OnShowOredersDispatcher, CanShowOredersDispatcher);
+        }
 
-		#endregion
+        #endregion
 
-		#region Fields And Properties
+        #region Fields And Properties
 
-		private readonly IRegionManager RegionManager;
-		private readonly IUnityContainer Container;
+        private readonly IRegionManager RegionManager;
+        private readonly IUnityContainer Container;
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		public override void Initialize()
-		{
-			//RegionManager.RegisterViewWithRegion("ContentRegion", () => Container.Resolve<CustomersView>());
-			NavigationService.NavigationMenu.Add(new NavigationMenu("Заказчики", ShowCustomersCommand));
-			NavigationService.NavigationMenu.Add(new NavigationMenu("Заказы", ShowOrdersCommand));
-			NavigationService.NavigationMenu.Add(new NavigationMenu("Офисы", ShowOfficesCommand));
-			NavigationService.NavigationMenu.Add(new NavigationMenu("Сделать заказ", ShowClientAddsOrderCommand));
-			NavigationService.NavigationMenu.Add(new NavigationMenu("Диспетчер заказов", ShowOredersDispatcherCommand));
-		}
+        public override void Initialize()
+        {
+            //RegionManager.RegisterViewWithRegion("ContentRegion", () => Container.Resolve<CustomersView>());
+            NavigationService.NavigationMenu.Add(new NavigationMenu("Заказчики", ShowCustomersCommand));
+            NavigationService.NavigationMenu.Add(new NavigationMenu("Заказы", ShowOrdersCommand));
+            NavigationService.NavigationMenu.Add(new NavigationMenu("Офисы", ShowOfficesCommand));
+            NavigationService.NavigationMenu.Add(new NavigationMenu("Сделать заказ", ShowClientAddsOrderCommand));
+            NavigationService.NavigationMenu.Add(new NavigationMenu("Диспетчер заказов", ShowOredersDispatcherCommand));
+        }
 
-		#endregion
+        #endregion
 
-		#region Commands Navigation
+        #region Commands Navigation
 
-		private DelegateCommand _ShowCustomersCommand;
-		public ICommand ShowCustomersCommand
-		{
-			get { return _ShowCustomersCommand; }
-		}
-		private void OnShowCustomers()
-		{
-			var region = RegionManager.Regions["ContentRegion"];
-			region.RemoveAll();
-			RegionManager.RegisterViewWithRegion("ContentRegion", () => Container.Resolve<CustomersView>());
-		}
-		private bool CanShowCustomers()
-		{
-			return RegionManager != null && Container != null;
-		}
+        private DelegateCommand _ShowCustomersCommand;
+        public ICommand ShowCustomersCommand
+        {
+            get { return _ShowCustomersCommand; }
+        }
+        private void OnShowCustomers()
+        {
+            var region = RegionManager.Regions["ContentRegion"];
+            region.RemoveAll();
+            RegionManager.RegisterViewWithRegion("ContentRegion", () => Container.Resolve<CustomersView>());
+        }
+        private bool CanShowCustomers()
+        {
+            return RegionManager != null && Container != null;
+        }
 
-		private DelegateCommand _ShowOrdersCommand;
-		public ICommand ShowOrdersCommand
-		{
-			get { return _ShowOrdersCommand; }
-		}
-		private void OnShowOrders()
-		{
-			var region = RegionManager.Regions["ContentRegion"];
-			region.RemoveAll();
-			RegionManager.RegisterViewWithRegion("ContentRegion", () => Container.Resolve<OrdersView>());
-		}
-		private bool CanShowOrders()
-		{
-			return RegionManager != null && Container != null;
-		}
+        private DelegateCommand _ShowOrdersCommand;
+        public ICommand ShowOrdersCommand
+        {
+            get { return _ShowOrdersCommand; }
+        }
+        private void OnShowOrders()
+        {
+            var region = RegionManager.Regions["ContentRegion"];
+            region.RemoveAll();
+            RegionManager.RegisterViewWithRegion("ContentRegion", () => Container.Resolve<OrdersView>());
+        }
+        private bool CanShowOrders()
+        {
+            return RegionManager != null && Container != null;
+        }
 
-		private DelegateCommand _ShowOfficesCommand;
-		public ICommand ShowOfficesCommand
-		{
-			get { return _ShowOfficesCommand; }
-		}
-		private void OnShowOffices()
-		{
-			var region = RegionManager.Regions["ContentRegion"];
-			region.RemoveAll();
-			RegionManager.RegisterViewWithRegion("ContentRegion", () => Container.Resolve<OfficesView>());
-		}
-		private bool CanShowOffices()
-		{
-			return RegionManager != null && Container != null;
-		}
+        private DelegateCommand _ShowOfficesCommand;
+        public ICommand ShowOfficesCommand
+        {
+            get { return _ShowOfficesCommand; }
+        }
+        private void OnShowOffices()
+        {
+            var region = RegionManager.Regions["ContentRegion"];
+            region.RemoveAll();
+            RegionManager.RegisterViewWithRegion("ContentRegion", () => Container.Resolve<OfficesView>());
+        }
+        private bool CanShowOffices()
+        {
+            return RegionManager != null && Container != null;
+        }
 
-		private DelegateCommand _ShowClientAddsOrderCommand;
-		public ICommand ShowClientAddsOrderCommand
-		{
-			get { return _ShowClientAddsOrderCommand; }
-		}
-		private void OnShowClientAddsOrder()
-		{
-			var region = RegionManager.Regions["ContentRegion"];
-			region.RemoveAll();
-			RegionManager.RegisterViewWithRegion("ContentRegion", () => Container.Resolve<ClientAddsOrderView>());
-		}
-		private bool CanShowClientAddsOrder()
-		{
-			return RegionManager != null && Container != null;
-		}
+        private DelegateCommand _ShowClientAddsOrderCommand;
+        public ICommand ShowClientAddsOrderCommand
+        {
+            get { return _ShowClientAddsOrderCommand; }
+        }
+        private void OnShowClientAddsOrder()
+        {
+            var region = RegionManager.Regions["ContentRegion"];
+            region.RemoveAll();
+            RegionManager.RegisterViewWithRegion("ContentRegion", () => Container.Resolve<ClientAddsOrderView>());
+        }
+        private bool CanShowClientAddsOrder()
+        {
+            return RegionManager != null && Container != null;
+        }
 
-		private DelegateCommand _ShowOredersDispatcherCommand;
-		public ICommand ShowOredersDispatcherCommand
-		{
-			get { return _ShowOredersDispatcherCommand; }
-		}
-		private void OnShowOredersDispatcher()
-		{
-			var region = RegionManager.Regions["ContentRegion"];
-			region.RemoveAll();
-			RegionManager.RegisterViewWithRegion("ContentRegion", () => Container.Resolve<OrdersDispatcherView>());
-		}
-		private bool CanShowOredersDispatcher()
-		{
-			return RegionManager != null && Container != null;
-		}
+        private DelegateCommand _ShowOredersDispatcherCommand;
+        public ICommand ShowOredersDispatcherCommand
+        {
+            get { return _ShowOredersDispatcherCommand; }
+        }
+        private void OnShowOredersDispatcher()
+        {
+            var region = RegionManager.Regions["ContentRegion"];
+            region.RemoveAll();
+            RegionManager.RegisterViewWithRegion("ContentRegion", () => Container.Resolve<OrdersDispatcherView>());
+        }
+        private bool CanShowOredersDispatcher()
+        {
+            return RegionManager != null && Container != null;
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

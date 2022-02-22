@@ -1,37 +1,32 @@
 ﻿using Microsoft.Practices.Unity;
 using Prism.Modularity;
 using Prism.Regions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Common.Module
 {
-	public abstract class ModuleBase : IModule
-	{
-		#region Costructor
+    public abstract class ModuleBase : IModule
+    {
+        #region Costructor
 
-		public ModuleBase(IUnityContainer container, IRegionManager regionManager)
-		{
-			Container = container;
-			RegionManager = regionManager;
-		}
+        public ModuleBase(IUnityContainer container, IRegionManager regionManager)
+        {
+            Container = container;
+            RegionManager = regionManager;
+        }
 
-		#endregion
+        #endregion
 
-		#region Fields And Properties
+        #region Fields And Properties
 
-		private readonly IRegionManager RegionManager;
-		private readonly IUnityContainer Container;
+        private readonly IRegionManager RegionManager;
+        private readonly IUnityContainer Container;
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		public abstract void Initialize();
+        public abstract void Initialize();
 
-		#endregion
-	}
+        #endregion
+    }
 }

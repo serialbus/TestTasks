@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 namespace Infrastructure.Common.Module
 {
-	public interface INavigationMenu
-	{
-		string Text { get; }
-		ICommand Command { get; }
-	}
+    public interface INavigationMenu
+    {
+        string Text { get; }
+        ICommand Command { get; }
+    }
 }

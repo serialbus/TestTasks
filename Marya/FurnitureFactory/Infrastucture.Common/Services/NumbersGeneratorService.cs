@@ -1,78 +1,74 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Common.Services
 {
-	/// <summary>
-	/// Единый сервис для всех офисов для генерации уникальных последовательных
-	/// номеров заказов замеров
-	/// </summary>
-	public class NumbersGeneratorService: INumbersGeneratorService
-	{
+    /// <summary>
+    /// Единый сервис для всех офисов для генерации уникальных последовательных
+    /// номеров заказов замеров
+    /// </summary>
+    public class NumbersGeneratorService : INumbersGeneratorService
+    {
 
-		/// <summary>
-		/// Максимальный номер заказа, после которого счётчик обнуляется
-		/// </summary>
-		public const int MAXNUMBER = 999999;
+        /// <summary>
+        /// Максимальный номер заказа, после которого счётчик обнуляется
+        /// </summary>
+        public const int MAXNUMBER = 999999;
 
-		#region Constructors
+        #region Constructors
 
-		public NumbersGeneratorService()
-		{
-		}
+        public NumbersGeneratorService()
+        {
+        }
 
-		#endregion
+        #endregion
 
-		#region Fields And Properties
+        #region Fields And Properties
 
-		private static int LastNumber = 0;
+        private static int LastNumber = 0;
 
-		private static ServiceStatus _Status = ServiceStatus.Ready;
+        private static ServiceStatus _Status = ServiceStatus.Ready;
 
-		public ServiceStatus Status
-		{
-			get { return _Status; }
-			set
-			{
-				_Status = value;
-				OnServiceChangedStatus();
-			}
-		}
+        public ServiceStatus Status
+        {
+            get { return _Status; }
+            set
+            {
+                _Status = value;
+                OnServiceChangedStatus();
+            }
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
-		/// <summary>
-		/// Генерирует новый уникальный последовательный номер заказа
-		/// </summary>
-		/// <returns></returns>
-		public int GenerateOrderNumber()
-		{
-			var currentNumber = LastNumber + 1;
+        #region Methods
+        /// <summary>
+        /// Генерирует новый уникальный последовательный номер заказа
+        /// </summary>
+        /// <returns></returns>
+        public int GenerateOrderNumber()
+        {
+            var currentNumber = LastNumber + 1;
 
-			if (currentNumber > MAXNUMBER)
-			{
-				Status = ServiceStatus.OutOfService; 
-				throw new InvalidOperationException("Счётчик номеров сервиса переполнен");
-			}
+            if (currentNumber > MAXNUMBER)
+            {
+                Status = ServiceStatus.OutOfService;
+                throw new InvalidOperationException("Счётчик номеров сервиса переполнен");
+            }
 
-			return LastNumber = currentNumber;
-		}
+            return LastNumber = currentNumber;
+        }
 
-		private void OnServiceChangedStatus()
-		{
-			ServiceChagedStatus?.Invoke(this, new EventArgs());
-		}
+        private void OnServiceChangedStatus()
+        {
+            ServiceChagedStatus?.Invoke(this, new EventArgs());
+        }
 
-		#endregion
+        #endregion
 
-		#region Events
+        #region Events
 
-		public event EventHandler ServiceChagedStatus;
+        public event EventHandler ServiceChagedStatus;
 
-		#endregion
-	}
+        #endregion
+    }
 }
