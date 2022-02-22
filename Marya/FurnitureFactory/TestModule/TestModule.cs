@@ -1,34 +1,15 @@
-﻿//using Infrastructure.Common.Module;
-//using Infrastructure.Common.Services;
-//using Microsoft.Practices.Unity;
-//using Prism.Commands;
-//using Prism.Modularity;
-//using Prism.Regions;
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-//using System.Windows.Input;
-using TestModule.Views;
-
-using Infrastructure.Common.Module;
+﻿using Infrastructure.Common.Module;
 using Infrastructure.Common.Services;
 using Microsoft.Practices.Unity;
 using Prism.Commands;
 using Prism.Modularity;
 using Prism.Regions;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
+using TestModule.Views;
 
 namespace TestModule
 {
-	[Module(ModuleName = WellKnownModuleNames.TestModule, OnDemand = false)]
+    [Module(ModuleName = WellKnownModuleNames.TestModule, OnDemand = false)]
 	public class TestModule : IModule
 	{
 		#region Constructors
